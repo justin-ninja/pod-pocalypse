@@ -1,0 +1,13 @@
+{
+  "name": "pod-pocalypse",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Justin <justin@ninjatech.marketing>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/justin-ninja/pod-pocalypse",
+  "resolutions": {
+    "what-input": "^3.0.0"
+  }
+}
