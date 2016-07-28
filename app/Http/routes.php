@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DashboardController@dashboard');
+Route::get('/admin', 'AdminController@dashboard');
+Route::post('/pod/type/create', "PodController@podTypeCreate");
+Route::post('/pod/create', "PodController@podCreate");
+Route::post('/pod/update/{pod}', "PodController@podUpdate");
+Route::get('/pod/buy/{pod}', 'PodController@podBuy');
+
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::post('/account/pay/{user}', 'UserAccountController@pay');

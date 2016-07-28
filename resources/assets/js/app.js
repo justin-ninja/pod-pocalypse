@@ -22,7 +22,7 @@ new Vue({
     components:
     {
         // navigation: require('./components/Partials/Navigation'),
-        changebranch: require('./components/Branch/Changebranch.js')
+        // changebranch: require('./components/Branch/Changebranch.js')
     },
 
     events:

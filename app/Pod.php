@@ -19,4 +19,9 @@ class Pod extends Model
     {
         return $this->belongsTo('App\PodType');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
 }

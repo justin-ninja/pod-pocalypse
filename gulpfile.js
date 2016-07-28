@@ -17,7 +17,7 @@ elixir(function(mix) {
     mix.copy('bower_components/jquery/dist/jquery.min.js', 'public/js');
     mix.copy('bower_components/foundation-sites/dist/foundation.js', 'public/js');
     mix.copy('bower_components/what-input/dist/what-input.js', 'public/js');
-    mix.copy('bower_components/foundation-stites/dist/css/foundation.css', 'resources/assets/sass/foundation.scss');
+    mix.copy('bower_components/foundation-sites/dist/foundation.css', 'resources/assets/sass/foundation.scss');
     mix.copy('bower_components/vue/dist/vue.js', 'resources/assets/js');
     mix.copy('bower_components/vue-resource/dist/vue-resource.js', 'resources/assets/js');
     mix.copy('bower_components/vue-router/dist/vue-router.js', 'resources/assets/js');

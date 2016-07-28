@@ -12,6 +12,7 @@ return array(
     'CreateKittiesTable' => $baseDir . '/database/migrations/2016_07_28_081123_create_kitties_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePodTypesTable' => $baseDir . '/database/migrations/2016_07_28_075940_create_pod_types_table.php',
+    'CreatePodUserTable' => $baseDir . '/database/migrations/2016_07_28_215341_create_pod_user_table.php',
     'CreatePodUsersTable' => $baseDir . '/database/migrations/2016_07_28_081254_create_pod_users_table.php',
     'CreatePodsTable' => $baseDir . '/database/migrations/2016_07_28_075637_create_pods_table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2016_07_28_092040_create_roles_table.php',

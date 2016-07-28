@@ -14,4 +14,16 @@ class Community extends Model
     {
         return $this->hasMany('App\User');
     }
+
+    public function pods()
+    {
+        return $this->hasMany('App\Pod');
+    }
+
+    public function availablePods()
+    {
+        return $this->hasMany('App\Pod')->where('qty', '>', 0);
+    }
+
+
 }

@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserAcount extends Model
 {
     protected $fillable = [
-        'user_id', 'account'
+        'user_id', 'amount'
     ];
 
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasOne('App\User');
     }
 }

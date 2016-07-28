@@ -14,6 +14,7 @@ class ComposerStaticInit2b330c59d532d50cf3f5b158cdc34763
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
     );
@@ -54,6 +55,7 @@ class ComposerStaticInit2b330c59d532d50cf3f5b158cdc34763
         'P' => 
         array (
             'Psy\\' => 4,
+            'Psr\\Http\\Message\\' => 17,
             'PhpParser\\' => 10,
         ),
         'M' => 
@@ -66,7 +68,12 @@ class ComposerStaticInit2b330c59d532d50cf3f5b158cdc34763
         ),
         'I' => 
         array (
+            'Intervention\\Image\\' => 19,
             'Illuminate\\' => 11,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
         ),
         'F' => 
         array (
@@ -175,6 +182,10 @@ class ComposerStaticInit2b330c59d532d50cf3f5b158cdc34763
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src/Psy',
         ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -187,9 +198,17 @@ class ComposerStaticInit2b330c59d532d50cf3f5b158cdc34763
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
+        'Intervention\\Image\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
         'Faker\\' => 
         array (
@@ -270,6 +289,7 @@ class ComposerStaticInit2b330c59d532d50cf3f5b158cdc34763
         'CreateKittiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_28_081123_create_kitties_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePodTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_28_075940_create_pod_types_table.php',
+        'CreatePodUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_28_215341_create_pod_user_table.php',
         'CreatePodUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_28_081254_create_pod_users_table.php',
         'CreatePodsTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_28_075637_create_pods_table.php',
         'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_28_092040_create_roles_table.php',

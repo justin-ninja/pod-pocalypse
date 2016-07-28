@@ -33,4 +33,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Roles');
     }
+
+    public function account()
+    {
+        return $this->hasOne('App\UserAcount');
+    }
+
+    public function pods()
+    {
+        return $this->belongsToMany('App\Pod')->withTimestamps();
+    }
 }

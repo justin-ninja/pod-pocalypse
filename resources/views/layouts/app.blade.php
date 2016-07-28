@@ -1,82 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation Starter Template</title>
+    <link rel="stylesheet" href="{{ asset('foundation-sites/css/foundation.css') }}" />
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
+<body>
+<div id="app">
+    <div class="off-canvas-wrapper">
+        <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+                <div class="row column">
+                    <br>
+                    @if (Auth::guest())
+                        <a class="button success" href="{{ url('/login') }}">Login</a>
+                        <br>
+                        <a class="button" href="{{ url('/register') }}">Register</a>
+                    @endif
+                    @if(Auth::user())
+                        @if(Auth::user()->role_id == 2)
+                            @if(Request::url() !== 'http://localhost:8000/admin')
+                                <a class="button success" href="{{ url('/admin') }}"><i class="fa fa-btn fa-sign-out"></i>Admin</a>
+                            @endif
+                            @if(Request::url() === 'http://localhost:8000/admin')
+                                <a class="button success" href="{{ url('/') }}"><i class="fa fa-btn fa-sign-out"></i>Front</a>
+                            @endif
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
+                        @endif
+                        <a class="button alert" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                        <img class="thumbnail" src="http://placehold.it/550x350">
+                        <h5>{{ Auth::user()->name }}</h5>
+                        <p><strong>Account: R{{ Auth::user()->account->amount }}</strong></p>
+                        <form action="{{ url('/account/pay/'.Auth::user()->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="text" name="amount">
+                            <button type="submit" class="button success">pay</button>
+                        </form>
+                    @endif
+                </div>
             </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
+            <div class="off-canvas-content" data-off-canvas-content>
+                <div class="title-bar hide-for-large">
+                    <div class="title-bar-left">
+                        <button class="menu-icon" type="button" data-open="my-info"></button>
+                        <span class="title-bar-title">Mike Mikerson</span>
+                    </div>
+                </div>
+                <div class="callout primary">
+                    <div class="row column">
+                        <h1><a href="/">POD-POCALYPSE</a></h1>
+                        @if(Auth::user())
+                            <p class="lead">This is the {{ Auth::user()->community->name }} pod-pocalypse.</p>
+                            <p>The kitty is currently sitting at R{{ Auth::user()->community->kitty }}</p>
+                            <p>There are currently {{ count(Auth::user()->community->availablePods) }} flavours to choose from</p>
+                        @endif
+                        @if(Auth::guest())
+                            <p class="lead">This is the {{ $community->name }} pod-pocalypse.</p>
+                            <p>There are currently {{ count($community->availablePods) }} flavours to choose from</p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    @yield('content')
+                    {{--<div class="row small-up-2 medium-up-3 large-up-4">--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="column">--}}
+                            {{--<img class="thumbnail" src="http://placehold.it/550x550">--}}
+                            {{--<h5>My Site</h5>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                </div>
+                <hr>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
+                {{--<div class="row">--}}
+                    {{--<div class="medium-6 columns">--}}
+                        {{--<h3>Contact Me</h3>--}}
+                        {{--<p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor.</p>--}}
+                        {{--<ul class="menu">--}}
+                            {{--<li><a href="#">Dribbble</a></li>--}}
+                            {{--<li><a href="#">Facebook</a></li>--}}
+                            {{--<li><a href="#">Yo</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                    {{--<div class="medium-6 columns">--}}
+                        {{--<label>Name--}}
+                            {{--<input type="text" placeholder="Name">--}}
+                        {{--</label>--}}
+                        {{--<label>Email--}}
+                            {{--<input type="text" placeholder="Email">--}}
+                        {{--</label>--}}
+                        {{--<label>--}}
+                            {{--Message--}}
+                            {{--<textarea placeholder="holla at a designerd"></textarea>--}}
+                        {{--</label>--}}
+                        {{--<input type="submit" class="button expanded" value="Submit">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
-    </nav>
+    </div>
+</div>
+<script src="{{ asset('foundation-sites/js/vendor/jquery.js') }}"></script>
+<script src="{{ asset('foundation-sites/js/vendor/what-input.js') }}"></script>
+<script src="{{ asset('foundation-sites/js/vendor/foundation.min.js') }}"></script>
+{{--<script src="js/vendor/jquery.min.js"></script>--}}
+{{--<script src="js/vendor/what-input.min.js"></script>--}}
+{{--<script src="js/foundation.min.js"></script>--}}
+<script>
+    $(document).foundation();
+</script>
 
-    @yield('content')
-
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>
